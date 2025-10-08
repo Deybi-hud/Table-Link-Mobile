@@ -40,6 +40,8 @@ android {
 }
 
 dependencies {
+    implementation ("androidx.navigation:navigation-animation:2.9.4")
+
     // Core Android
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -57,6 +59,7 @@ dependencies {
 
     // Material Icons Extended
     implementation("androidx.compose.material:material-icons-extended:1.6.0")
+    implementation(libs.androidx.navigation.runtime.ktx)
 
     // Testing
     testImplementation(libs.junit)
