@@ -26,10 +26,3 @@
   <li>Excel (.xlsx) como formato de salida</li>
   <li>SQL</li>
 </ul>
-
----
-
-<h2 align="center">Notas</h2>
-
-- Este proyecto está diseñado para **microempresas** que necesitan optimizar la gestión de datos.  
-- La ejecución se realiza únicamente mediante **Postman**; no posee interfaz gráfica.  
