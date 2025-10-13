@@ -22,7 +22,4 @@
 
 <ul>
   <li>Kotlin</li>
-  <li>Postman (para pruebas y ejecución)</li>
-  <li>Excel (.xlsx) como formato de salida</li>
-  <li>SQL</li>
 </ul>
