@@ -53,10 +53,10 @@ dependencies {
     implementation(libs.androidx.compose.material3)
 
     // ViewModel Compose
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
 
     // Material Icons Extended
-    implementation("androidx.compose.material:material-icons-extended:1.6.0")
+    implementation(libs.androidx.compose.material.icons.extended)
     implementation(libs.androidx.navigation.runtime.ktx)
 
     // Testing
