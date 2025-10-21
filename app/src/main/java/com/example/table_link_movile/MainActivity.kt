@@ -8,8 +8,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.table_link_movile.Data.remote.model.AppDatabase
 import com.example.table_link_movile.ui.screens.UserScreen
 import com.example.table_link_movile.ui.theme.TableLinkMovileTheme
-import com.example.table_link_movile.viewmodel.UserViewModel
-import com.example.table_link_movile.viewmodel.UserViewModelFactory
 
 class MainActivity : ComponentActivity() {
 
