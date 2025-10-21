@@ -58,6 +58,7 @@ dependencies {
     // Material Icons Extended
     implementation(libs.androidx.compose.material.icons.extended)
     implementation(libs.androidx.navigation.runtime.ktx)
+    implementation(libs.androidx.compose.material3.window.size.class1)
 
     // Testing
     testImplementation(libs.junit)
