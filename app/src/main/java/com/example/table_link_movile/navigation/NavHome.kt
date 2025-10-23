@@ -17,9 +17,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color.Companion.Blue
-import androidx.compose.ui.graphics.Color.Companion.Gray
-import androidx.compose.ui.graphics.Color.Companion.White
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -37,16 +35,15 @@ fun NavHome(authViewModel: AuthViewModel, navControllerApp: NavHostController) {
 
 
     Scaffold(
-        containerColor = Blue,
         bottomBar = {
 
-            NavigationBar(windowInsets = NavigationBarDefaults.windowInsets, containerColor = Blue,
-                contentColor = Gray) {
+            NavigationBar(windowInsets = NavigationBarDefaults.windowInsets, containerColor = Color.Blue,
+                contentColor = Color.Gray) {
                 NavigationBarItem(
                     selected = selectedDestination == "home_user",
                     onClick = {
                         navController.navigate(route="home_user")
-                        selectedDestination ="user_home"
+                        selectedDestination ="home_user"
                     },
                     icon = {
                         Icon(
@@ -56,10 +53,10 @@ fun NavHome(authViewModel: AuthViewModel, navControllerApp: NavHostController) {
                     },
                     label = {Text("Inicio")},
                     colors = NavigationBarItemDefaults.colors(
-                        selectedIconColor = White,
-                        selectedTextColor = White,
-                        unselectedIconColor = Gray,
-                        unselectedTextColor = Gray,
+                        selectedIconColor = Color.White,
+                        selectedTextColor = Color.White,
+                        unselectedIconColor = Color.Gray,
+                        unselectedTextColor = Color.Gray,
 
                     )
                 )
@@ -77,10 +74,10 @@ fun NavHome(authViewModel: AuthViewModel, navControllerApp: NavHostController) {
                     },
                     label = {Text("Perfil")},
                     colors = NavigationBarItemDefaults.colors(
-                        selectedIconColor = White,
-                        selectedTextColor = White,
-                        unselectedIconColor = Gray,
-                        unselectedTextColor = Gray,
+                        selectedIconColor = Color.White,
+                        selectedTextColor = Color.White,
+                        unselectedIconColor = Color.Gray,
+                        unselectedTextColor = Color.Gray,
 
                     )
 
@@ -95,7 +92,7 @@ fun NavHome(authViewModel: AuthViewModel, navControllerApp: NavHostController) {
             startDestination = "home_user",
             modifier = Modifier.padding(innerPadding)
         ){
-            composable("home_user"){ HomeScreen() }
+            composable("home_user"){ HomeScreen(authViewModel = authViewModel) }
             composable("profile"){ ProfileScreen(authViewModel,navControllerApp)}
         }
     }
