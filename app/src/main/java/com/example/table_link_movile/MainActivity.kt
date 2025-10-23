@@ -6,6 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import com.example.table_link_movile.data.repository.AuthRepository
+import com.example.table_link_movile.navigation.AppNavGraph
+import com.example.table_link_movile.ui.theme.TableLinkMovileTheme
 import com.example.table_link_movile.viewmodel.AuthViewModel
 import com.example.table_link_movile.viewmodel.AuthViewModelFactory
 import com.google.firebase.auth.FirebaseAuth
@@ -24,7 +26,12 @@ class MainActivity : ComponentActivity() {
 
         enableEdgeToEdge()
         setContent {
-
+            TableLinkMovileTheme{
+                AppNavGraph(
+                    authViewModel = authViewModel,
+                    isLoggedIn = isLoggedIn
+                )
+            }
         }
     }
 }

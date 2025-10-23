@@ -1,4 +1,4 @@
-package com.example.table_link_movile.ui.screens
+package com.example.table_link_movile.ui.screens.user
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column

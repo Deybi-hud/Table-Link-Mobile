@@ -25,7 +25,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.table_link_movile.ui.screens.HomeScreen
-import com.example.table_link_movile.ui.screens.ProfileScreen
+import com.example.table_link_movile.ui.screens.user.ProfileScreen
 import com.example.table_link_movile.viewmodel.AuthViewModel
 
 
@@ -33,7 +33,7 @@ import com.example.table_link_movile.viewmodel.AuthViewModel
 fun NavHome(authViewModel: AuthViewModel, navControllerApp: NavHostController) {
 
     val navController = rememberNavController()
-    var selectedDestination by rememberSaveable { mutableStateOf("home") }
+    var selectedDestination by rememberSaveable { mutableStateOf("user_home") }
 
 
     Scaffold(
@@ -43,15 +43,15 @@ fun NavHome(authViewModel: AuthViewModel, navControllerApp: NavHostController) {
             NavigationBar(windowInsets = NavigationBarDefaults.windowInsets, containerColor = Blue,
                 contentColor = Gray) {
                 NavigationBarItem(
-                    selected = selectedDestination == "Home",
+                    selected = selectedDestination == "user_home",
                     onClick = {
-                        navController.navigate(route="Home")
-                        selectedDestination ="Home"
+                        navController.navigate(route="user_home")
+                        selectedDestination ="user_home"
                     },
                     icon = {
                         Icon(
                             Icons.Default.Home,
-                            contentDescription ="Home"
+                            contentDescription ="user_home"
                         )
                     },
                     label = {Text("Inicio")},
