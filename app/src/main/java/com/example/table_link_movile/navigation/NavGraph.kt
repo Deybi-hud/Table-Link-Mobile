@@ -4,7 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.table_link_movile.ui.screens.HomeScreen
 import com.example.table_link_movile.ui.screens.LoginScreen
+import com.example.table_link_movile.ui.screens.ProfileScreen
 import com.example.table_link_movile.ui.screens.RegisterScreen
 import com.example.table_link_movile.ui.screens.SplashScreen
 import com.example.table_link_movile.viewmodel.AuthViewModel
@@ -54,5 +56,8 @@ fun AppNavGraph(authViewModel: AuthViewModel, isLoggedIn: Boolean) {
         }
 
 
+
+
     }
 }
+
