@@ -1,6 +1,5 @@
 package com.example.table_link_movile.navigation
 
-import android.R.color.white
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -11,32 +10,30 @@ import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.graphics.BlendMode.Companion.Color
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.Blue
 import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.table_link_movile.viewmodel.AuthViewModel
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
-import androidx.navigation.compose.*
 import com.example.table_link_movile.ui.screens.HomeScreen
 import com.example.table_link_movile.ui.screens.ProfileScreen
-import java.nio.file.WatchEvent
+import com.example.table_link_movile.viewmodel.AuthViewModel
 
 
 @Composable
-fun NavHome(authViewModel: AuthViewModel, navHostControllerApp: NavHostController) {
+fun NavHome(authViewModel: AuthViewModel, navControllerApp: NavHostController) {
 
     val navController = rememberNavController()
-    var selectedDestination by rememberSaveable { mutableStateOf("home_user") }
+    var selectedDestination by rememberSaveable { mutableStateOf("home") }
 
 
     Scaffold(
@@ -98,8 +95,8 @@ fun NavHome(authViewModel: AuthViewModel, navHostControllerApp: NavHostControlle
             startDestination = "home",
             modifier = Modifier.padding(innerPadding)
         ){
-            composable("home"){ HomeScreen(authViewModel,navController)}
-            composable("profile"){ ProfileScreen(authViewModel,navController)}
+            composable("home"){ HomeScreen(authViewModel,navControllerApp)}
+            composable("profile"){ ProfileScreen(authViewModel,navControllerApp)}
         }
     }
 }

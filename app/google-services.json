@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "321660372323",
+    "project_id": "firetable-link",
+    "storage_bucket": "firetable-link.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:321660372323:android:49e203ea2ea4a15d30bf56",
+        "android_client_info": {
+          "package_name": "com.example.table_link_movile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCs6dFTzztg6lkNnvUz6fdsR-wJCd-PxZk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
