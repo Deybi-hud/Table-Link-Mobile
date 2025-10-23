@@ -1,90 +1,113 @@
 package com.example.table_link_movile.ui.screens
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.Center
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Black
+import androidx.compose.ui.graphics.Color.Companion.Blue
+import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-
+import com.example.table_link_movile.ui.components.ButtonModificado
+import com.example.table_link_movile.ui.components.TextFieldModificado
+import com.example.table_link_movile.viewmodel.AuthState
+import com.example.table_link_movile.viewmodel.AuthViewModel
 
 @Composable
-fun LoginScreen(){
-    Box(
-        Modifier
-            .fillMaxSize()
-            .padding(16.dp)){
-        Login(Modifier.align(Center))
+fun LoginScreen(
+    onLogin: (String, String) -> Unit,
+    onNavigateToRegister: () -> Unit,
+    onSuccess: () -> Unit,
+    authViewModel: AuthViewModel,
+) {
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+
+    val authState by authViewModel.authState.collectAsState()
+
+
+    LaunchedEffect(authState) {
+        if (authState is AuthState.Success) {
+            onSuccess()
+        }
     }
-}
 
-@Composable
-fun Login(modifier: Modifier) {
-    Column(modifier = modifier){
-        Spacer(Modifier.padding(16.dp))
-        EmailField()
-        Spacer(Modifier.padding(4.dp))
-        PasswordField()
-        Spacer(Modifier.padding(8.dp))
-        ForgotPassword(Modifier.align(Alignment.End))
-        Spacer(Modifier.padding(16.dp))
-        LoginButton()
+    Scaffold { padding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize().background(Black)
+                .padding(padding)
+        ) {
+            Text(
+                text = "Login",
+                fontSize = 32.sp,
+                fontWeight = FontWeight.Bold,
+                color = White,
+                modifier = Modifier.fillMaxWidth(),
+                textAlign = TextAlign.Center
+            )
+
+            Spacer(modifier = Modifier.height(50.dp))
+
+            TextFieldModificado(email, { email = it }, false, "Correo")
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            TextFieldModificado(password, { password = it }, true, "Contraseña")
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            ButtonModificado("Ingresar", { onLogin(email, password) })
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            when (authState) {
+                is AuthState.Loading -> CircularProgressIndicator()
+                is AuthState.Error -> Text(
+                    text = (authState as AuthState.Error).message,
+                    color = MaterialTheme.colorScheme.error,
+                    modifier = Modifier.padding(top = 8.dp)
+                )
+                else -> {}
+            }
+
+            Spacer(modifier = Modifier.weight(1f))
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    text = "Registrate",
+                    color = Blue,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Medium,
+                    modifier = Modifier.clickable { onNavigateToRegister() }
+                )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+        }
     }
-}
-
-@Composable
-fun LoginButton() {
-    Button(onClick = { }, Modifier.
-    fillMaxWidth().
-    height(48.dp),
-    colors = ButtonDefaults.buttonColors())
-    {
-        Text(text="Iniciar sesión")
-    }
-}
-
-@Composable
-fun ForgotPassword(modifier: Modifier) {
-    Text(text="¿Olvido su contraseña?", modifier = Modifier.clickable{ }, fontSize = 12.sp, fontWeight = FontWeight.Bold)
-}
-
-@Composable
-fun PasswordField() {
-    TextField(value = "", onValueChange ={},
-    placeholder = {Text(text = "Contraseña")},
-    modifier = Modifier.fillMaxWidth(),
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-        singleLine = true,
-        maxLines = 1,
-        colors = TextFieldDefaults.colors(Color(0xFFD0BCFF))
-    )
-}
-
-@Composable
-fun EmailField(){
-    TextField(value = "",onValueChange={},
-        modifier = Modifier.fillMaxWidth(),
-        placeholder = { Text(text = "Email")},
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-        singleLine = true,
-        maxLines = 1,
-        colors = TextFieldDefaults.colors(Color(0xFFD0BCFF))
-    )
 }
