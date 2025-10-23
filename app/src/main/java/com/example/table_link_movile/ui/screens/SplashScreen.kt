@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color.Companion.Black
+import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.graphics.Color.Companion.White
 import kotlinx.coroutines.delay
 
@@ -20,7 +20,7 @@ fun SplashScreen(onTimeout: () -> Unit) {
         onTimeout
     }
 
-    Box(modifier = Modifier.fillMaxSize().background(Black), contentAlignment = Alignment.Center){
+    Box(modifier = Modifier.fillMaxSize().background(Gray), contentAlignment = Alignment.Center){
         CircularProgressIndicator(color = White)
     }
 

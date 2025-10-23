@@ -24,7 +24,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.table_link_movile.ui.screens.HomeScreen
+import com.example.table_link_movile.ui.screens.user.HomeScreen
 import com.example.table_link_movile.ui.screens.user.ProfileScreen
 import com.example.table_link_movile.viewmodel.AuthViewModel
 
@@ -33,7 +33,7 @@ import com.example.table_link_movile.viewmodel.AuthViewModel
 fun NavHome(authViewModel: AuthViewModel, navControllerApp: NavHostController) {
 
     val navController = rememberNavController()
-    var selectedDestination by rememberSaveable { mutableStateOf("user_home") }
+    var selectedDestination by rememberSaveable { mutableStateOf("home_user") }
 
 
     Scaffold(
@@ -43,15 +43,15 @@ fun NavHome(authViewModel: AuthViewModel, navControllerApp: NavHostController) {
             NavigationBar(windowInsets = NavigationBarDefaults.windowInsets, containerColor = Blue,
                 contentColor = Gray) {
                 NavigationBarItem(
-                    selected = selectedDestination == "user_home",
+                    selected = selectedDestination == "home_user",
                     onClick = {
-                        navController.navigate(route="user_home")
+                        navController.navigate(route="home_user")
                         selectedDestination ="user_home"
                     },
                     icon = {
                         Icon(
                             Icons.Default.Home,
-                            contentDescription ="user_home"
+                            contentDescription ="home_user"
                         )
                     },
                     label = {Text("Inicio")},
@@ -92,10 +92,10 @@ fun NavHome(authViewModel: AuthViewModel, navControllerApp: NavHostController) {
         innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = "home",
+            startDestination = "home_user",
             modifier = Modifier.padding(innerPadding)
         ){
-            composable("home"){ HomeScreen(authViewModel,navControllerApp)}
+            composable("home_user"){ HomeScreen() }
             composable("profile"){ ProfileScreen(authViewModel,navControllerApp)}
         }
     }
