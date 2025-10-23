@@ -31,7 +31,7 @@ import com.example.table_link_movile.viewmodel.AuthViewModel
 fun NavHome(authViewModel: AuthViewModel, navControllerApp: NavHostController) {
 
     val navController = rememberNavController()
-    var selectedDestination by rememberSaveable { mutableStateOf("home_user") }
+    var selectedDestination by rememberSaveable {mutableStateOf("home_user")}
 
 
     Scaffold(
@@ -61,7 +61,7 @@ fun NavHome(authViewModel: AuthViewModel, navControllerApp: NavHostController) {
                     )
                 )
                 NavigationBarItem(
-                    selected = selectedDestination =="profile",
+                    selected = selectedDestination == "profile",
                     onClick = {
                         navController.navigate("profile")
                         selectedDestination="profile"
@@ -69,10 +69,10 @@ fun NavHome(authViewModel: AuthViewModel, navControllerApp: NavHostController) {
                     icon = {
                         Icon(
                             Icons.Default.Person,
-                            contentDescription = "Perfil"
+                            contentDescription = "profile"
                         )
                     },
-                    label = {Text("Perfil")},
+                    label = {Text("profile")},
                     colors = NavigationBarItemDefaults.colors(
                         selectedIconColor = Color.White,
                         selectedTextColor = Color.White,
@@ -92,7 +92,7 @@ fun NavHome(authViewModel: AuthViewModel, navControllerApp: NavHostController) {
             startDestination = "home_user",
             modifier = Modifier.padding(innerPadding)
         ){
-            composable("home_user"){ HomeScreen(authViewModel = authViewModel) }
+            composable("home_user"){ HomeScreen() }
             composable("profile"){ ProfileScreen(authViewModel,navControllerApp)}
         }
     }
