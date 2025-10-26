@@ -14,10 +14,20 @@ class SessionManager(private val context: Context){
 
     companion object{
         private val USER_UID = stringPreferencesKey("user_uid")
+        private val USER_EMAIL = stringPreferencesKey("user_email")
+        private val USER_NAME = stringPreferencesKey("user_name")
     }
 
     val userUidFlow: Flow<String?> = context.dataStore.data.map { prefs ->
         prefs[USER_UID]
+    }
+
+    val userNameFlow: Flow<String?> = context.dataStore.data.map { prefs ->
+        prefs[USER_NAME]
+    }
+
+    val userEmailFlow: Flow<String?> = context.dataStore.data.map { prefs ->
+        prefs[USER_EMAIL]
     }
 
     suspend fun saveUserName(name: String) {
@@ -28,8 +38,6 @@ class SessionManager(private val context: Context){
         context.dataStore.edit { prefs -> prefs[stringPreferencesKey("user_email")] = email}
 
     }
-
-
 
     suspend fun saveUid(uid: String){
         context.dataStore.edit { prefs -> prefs[USER_UID] = uid}

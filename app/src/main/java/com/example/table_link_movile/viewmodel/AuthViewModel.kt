@@ -11,6 +11,9 @@ class AuthViewModel(private val repository: AuthRepository) : ViewModel() {
 
     private val _authState = MutableStateFlow<AuthState>(AuthState.Idle)
     val authState: StateFlow<AuthState> = _authState
+    val userNameFlow = repository.getUserNameFlow()
+    val userEmailFlow = repository.getUserEmailFlow()
+    val userUidFlow = repository.getUidFlow()
 
 
     fun login(email: String, password: String) {

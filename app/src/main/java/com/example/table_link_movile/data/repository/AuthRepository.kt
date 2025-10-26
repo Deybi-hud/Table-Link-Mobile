@@ -17,6 +17,8 @@ class AuthRepository(context: Context) {
             val uid = result.user?.uid ?: return Result.failure(Exception("Invalid user"))
 
             sessionManager.saveUid(uid)
+            sessionManager.saveUserEmail(email)
+
             Result.success("Login successful")
         } catch (e: Exception) {
             Result.failure(e)
@@ -29,6 +31,9 @@ class AuthRepository(context: Context) {
             val uid = result.user?.uid ?: return Result.failure(Exception("Invalid user"))
 
             sessionManager.saveUid(uid)
+            sessionManager.saveUserEmail(email)
+            sessionManager.saveUserName(name)
+
             Result.success(uid)
         } catch (e: Exception) {
             Result.failure(e)
@@ -46,5 +51,8 @@ class AuthRepository(context: Context) {
     }
 
     fun getUidFlow() = sessionManager.userUidFlow
+    fun getUserNameFlow() = sessionManager.userNameFlow
+    fun getUserEmailFlow() = sessionManager.userEmailFlow
+
 
 }

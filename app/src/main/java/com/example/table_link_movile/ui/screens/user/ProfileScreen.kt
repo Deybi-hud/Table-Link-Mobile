@@ -28,6 +28,10 @@ import com.example.table_link_movile.viewmodel.AuthViewModel
 fun ProfileScreen(authViewModel: AuthViewModel, navControllerApp: NavHostController) {
     val authState by authViewModel.authState.collectAsState()
 
+    val userName by authViewModel.userNameFlow.collectAsState(initial = "")
+    val userEmail by authViewModel.userEmailFlow.collectAsState(initial = "")
+
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -41,7 +45,25 @@ fun ProfileScreen(authViewModel: AuthViewModel, navControllerApp: NavHostControl
                 fontWeight = FontWeight.Bold,
                 color = White
             )
+
+        Spacer(Modifier.height(100.dp))
+
+        Text(
+            text = "Nombre: ${if (userName.isNullOrBlank()) "-" else userName}",
+            fontSize = 18.sp,
+            color = White
+        )
+
+        Spacer(Modifier.height(8.dp))
+
+        Text(
+            text = "Correo: ${if (userEmail.isNullOrBlank()) "-" else userEmail}",
+            fontSize = 18.sp,
+            color = White
+        )
+
         Spacer(Modifier.height(150.dp))
+
         Button(
             onClick = {
                 try {
