@@ -27,7 +27,7 @@ fun ButtonModificado(
             .padding(horizontal = 65.dp)
             .fillMaxWidth()
             .height(45.dp),
-        colors = ButtonDefaults.buttonColors(
+            colors = ButtonDefaults.buttonColors(
             containerColor = Blue,
             disabledContainerColor = Blue.copy(alpha = 0.5f)
         ),

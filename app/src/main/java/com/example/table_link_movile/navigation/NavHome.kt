@@ -1,12 +1,17 @@
 package com.example.table_link_movile.navigation
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarDefaults
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
@@ -16,8 +21,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -36,9 +43,11 @@ fun NavHome(authViewModel: AuthViewModel, navControllerApp: NavHostController) {
 
     Scaffold(
         bottomBar = {
-
-            NavigationBar(windowInsets = NavigationBarDefaults.windowInsets, containerColor = Color.Blue,
-                contentColor = Color.Gray) {
+            NavigationBar(modifier = Modifier
+                .height(80.dp)
+                .shadow(4.dp),
+                containerColor = MaterialTheme.colorScheme.background,
+            ) {
                 NavigationBarItem(
                     selected = selectedDestination == "home_user",
                     onClick = {
@@ -46,18 +55,32 @@ fun NavHome(authViewModel: AuthViewModel, navControllerApp: NavHostController) {
                         selectedDestination ="home_user"
                     },
                     icon = {
-                        Icon(
-                            Icons.Default.Home,
-                            contentDescription ="home_user"
-                        )
-                    },
-                    label = {Text("Inicio")},
-                    colors = NavigationBarItemDefaults.colors(
-                        selectedIconColor = Color.White,
-                        selectedTextColor = Color.White,
-                        unselectedIconColor = Color.Gray,
-                        unselectedTextColor = Color.Gray,
+                      Box(
+                            modifier = Modifier.size(40.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                Icons.Default.Home,
+                                contentDescription = "home_user",
+                                modifier = Modifier
+                                    .size(22.dp)
 
+                            )
+                            if(selectedDestination == "home_user"){
+                                Box(
+                                    modifier = Modifier
+                                        .size(4.dp)
+                                        .background(
+                                            color = MaterialTheme.colorScheme.primary,
+                                            shape = CircleShape)
+                                )
+                            }
+                        }
+                    },
+                    label = {Text("")},
+                    colors = NavigationBarItemDefaults.colors(
+                        selectedIconColor = MaterialTheme.colorScheme.primary,
+                        unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 )
                 NavigationBarItem(
@@ -67,18 +90,32 @@ fun NavHome(authViewModel: AuthViewModel, navControllerApp: NavHostController) {
                         selectedDestination="profile"
                     },
                     icon = {
-                        Icon(
-                            Icons.Default.Person,
-                            contentDescription = "profile"
-                        )
-                    },
-                    label = {Text("profile")},
-                    colors = NavigationBarItemDefaults.colors(
-                        selectedIconColor = Color.White,
-                        selectedTextColor = Color.White,
-                        unselectedIconColor = Color.Gray,
-                        unselectedTextColor = Color.Gray,
+                        Box(
+                           modifier = Modifier.size(40.dp),
+                           contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                Icons.Default.Person,
+                                contentDescription = "profile",
+                                modifier = Modifier.size(22.dp)
 
+                            )
+                            if(selectedDestination == "profile"){
+                                Box(
+                                    modifier = Modifier
+                                        .size(4.dp)
+                                        .background(
+                                            color = MaterialTheme.colorScheme.primary,
+                                            shape = CircleShape
+                                        )
+                                )
+                            }
+                        }
+                    },
+                    label = {Text("")},
+                    colors = NavigationBarItemDefaults.colors(
+                        selectedIconColor = MaterialTheme.colorScheme.primary,
+                        unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
 
                 )
