@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
@@ -15,11 +16,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color.Companion.Black
-import androidx.compose.ui.graphics.Color.Companion.Green
+import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -32,7 +31,7 @@ fun ProfileScreen(authViewModel: AuthViewModel, navControllerApp: NavHostControl
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Black)
+            .background(Gray)
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -42,7 +41,7 @@ fun ProfileScreen(authViewModel: AuthViewModel, navControllerApp: NavHostControl
                 fontWeight = FontWeight.Bold,
                 color = White
             )
-        Spacer(Modifier.height(32.dp))
+        Spacer(Modifier.height(150.dp))
         Button(
             onClick = {
                 try {
@@ -50,15 +49,14 @@ fun ProfileScreen(authViewModel: AuthViewModel, navControllerApp: NavHostControl
                     navControllerApp.navigate("record") {
                         popUpTo("home") { inclusive = true }
                     }
-                } catch (err: Exception) {
-
-                }
-
+                } catch (err: Exception) {}
             },
-            colors = ButtonDefaults.buttonColors(containerColor = Green),
-            modifier = Modifier.fillMaxWidth()
-        ){
-            Text("Historial", color = White)
+            colors = ButtonDefaults.buttonColors(containerColor = White),
+            modifier = Modifier
+                .fillMaxWidth(),
+                    shape = RoundedCornerShape(8.dp)
+        ) {
+            Text("Historial", color = Gray)
         }
         Spacer(Modifier.height(32.dp))
         Button(
@@ -73,10 +71,12 @@ fun ProfileScreen(authViewModel: AuthViewModel, navControllerApp: NavHostControl
                 }
 
             },
-            colors = ButtonDefaults.buttonColors(containerColor = Green),
-            modifier = Modifier.fillMaxWidth()
+            colors = ButtonDefaults.buttonColors(containerColor = White),
+            modifier = Modifier
+                .fillMaxWidth(),
+                    shape = RoundedCornerShape(8.dp)
         ){
-            Text("Cerrar sesión", color = White)
+            Text("Cerrar sesión", color = Gray)
         }
     }
 }
