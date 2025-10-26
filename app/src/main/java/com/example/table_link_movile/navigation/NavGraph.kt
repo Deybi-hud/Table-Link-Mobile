@@ -22,7 +22,7 @@ fun AppNavGraph(authViewModel: AuthViewModel, isLoggedIn: Boolean) {
         composable("splash") {
             SplashScreen {
                 if (isLoggedIn) navController.navigate("home") { popUpTo("splash") { inclusive = true } }
-                else navController.navigate("login") { popUpTo("splash") { inclusive = true } }
+                else navController.navigate("home") { popUpTo("splash") { inclusive = true } }
             }
         }
         composable("login") {
