@@ -27,15 +27,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.Black
+import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+
 import androidx.compose.ui.unit.dp
 import com.example.table_link_movile.ui.components.ButtonModificado
 import com.example.table_link_movile.ui.components.TextFieldModificado
 import com.example.table_link_movile.viewmodel.AuthState
 import com.example.table_link_movile.viewmodel.AuthViewModel
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegisterScreen(
@@ -63,7 +64,7 @@ fun RegisterScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = "Crear Cuenta",
+                        text = "Crear cuenta",
                         fontWeight = FontWeight.Bold,
                         color = White,
                         modifier = Modifier.fillMaxWidth(),
@@ -83,13 +84,18 @@ fun RegisterScreen(
     ) { padding ->
         Column(
             modifier = Modifier
-                .fillMaxSize().background(Black)
+                .fillMaxSize().background(color = Gray)
                 .padding(padding),
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .padding(top = 100.dp)
+                    .fillMaxWidth()
             ) {
+                TextFieldModificado(name,{ name = it }, false, "Nombre")
+
+                Spacer(modifier = Modifier.height(8.dp))
 
                 TextFieldModificado(email, { email = it }, false, "Correo")
 

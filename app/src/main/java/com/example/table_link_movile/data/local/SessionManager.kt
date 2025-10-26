@@ -20,6 +20,17 @@ class SessionManager(private val context: Context){
         prefs[USER_UID]
     }
 
+    suspend fun saveUserName(name: String) {
+        context.dataStore.edit { prefs -> prefs[stringPreferencesKey("user_name")] = name }
+    }
+
+    suspend fun saveUserEmail(email: String){
+        context.dataStore.edit { prefs -> prefs[stringPreferencesKey("user_email")] = email}
+
+    }
+
+
+
     suspend fun saveUid(uid: String){
         context.dataStore.edit { prefs -> prefs[USER_UID] = uid}
     }

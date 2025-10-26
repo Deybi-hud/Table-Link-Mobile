@@ -62,6 +62,7 @@ dependencies {
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.androidx.compose.material3.window.size.class1)
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.ui)
 
     // Testing
     testImplementation(libs.junit)

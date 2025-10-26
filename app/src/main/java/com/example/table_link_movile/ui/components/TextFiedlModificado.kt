@@ -2,10 +2,12 @@ package com.example.table_link_movile.ui.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
@@ -29,6 +31,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun TextFieldModificado(newValue: String, onChange: (String) -> Unit, isPassword: Boolean, label: String) {
     var passwordVisible by remember { mutableStateOf(false) }
+
     OutlinedTextField(
         value = newValue,
         onValueChange = onChange,
@@ -42,7 +45,7 @@ fun TextFieldModificado(newValue: String, onChange: (String) -> Unit, isPassword
             if (isPassword) {
                 IconButton(onClick = { passwordVisible = !passwordVisible }) {
                     Icon(
-                        imageVector = if (passwordVisible) Icons.Default.Favorite else Icons.Default.Favorite,
+                        imageVector = if (passwordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff,
                         contentDescription = if (passwordVisible) "Hide password" else "Show password",
                         tint = LightGray
                     )
@@ -52,18 +55,21 @@ fun TextFieldModificado(newValue: String, onChange: (String) -> Unit, isPassword
         },
         visualTransformation = if (isPassword) PasswordVisualTransformation() else VisualTransformation.None,
         modifier = Modifier
-            .fillMaxWidth()
+            .padding(horizontal = 50.dp)
+            .fillMaxWidth(1f)
             .height(60.dp),
-        colors = OutlinedTextFieldDefaults.colors(
+
+            colors = OutlinedTextFieldDefaults.colors(
             focusedBorderColor = LightGray.copy(alpha = 0.5f),
             unfocusedBorderColor = LightGray.copy(alpha = 0.3f),
             focusedTextColor = White,
             unfocusedTextColor = White,
             cursorColor = Green,
             focusedContainerColor = Color.Transparent,
-            unfocusedContainerColor = Color.Transparent
+            unfocusedContainerColor = Color.Transparent,
+
         ),
-        shape = RoundedCornerShape(30.dp),
+        shape = RoundedCornerShape(12.dp),
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
         singleLine = true
     )

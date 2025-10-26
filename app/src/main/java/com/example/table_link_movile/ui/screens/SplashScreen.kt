@@ -17,7 +17,7 @@ import kotlinx.coroutines.delay
 fun SplashScreen(onTimeout: () -> Unit) {
     LaunchedEffect(true) {
         delay(1000)
-        onTimeout
+        onTimeout()
     }
 
     Box(modifier = Modifier.fillMaxSize().background(Gray), contentAlignment = Alignment.Center){

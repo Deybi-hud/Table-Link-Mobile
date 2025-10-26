@@ -35,6 +35,11 @@ class AuthRepository(context: Context) {
         }
     }
 
+    private suspend fun saveUserName(uid: String, name: String) {
+        sessionManager.saveUserName(name)
+    }
+
+
     suspend fun logout(){
         auth.signOut()
         sessionManager.clearSession()

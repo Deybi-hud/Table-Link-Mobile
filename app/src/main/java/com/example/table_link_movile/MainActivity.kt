@@ -5,12 +5,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import com.example.table_link_movile.data.repository.AuthRepository
 import com.example.table_link_movile.navigation.AppNavGraph
 import com.example.table_link_movile.ui.theme.TableLinkMovileTheme
 import com.example.table_link_movile.viewmodel.AuthViewModel
 import com.example.table_link_movile.viewmodel.AuthViewModelFactory
-import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,15 +22,13 @@ class MainActivity : ComponentActivity() {
             AuthViewModelFactory(repository)
         }
 
-        val currentUser = FirebaseAuth.getInstance().currentUser
-        val isLoggedIn = currentUser != null
-
         enableEdgeToEdge()
         setContent {
-            TableLinkMovileTheme{
+            TableLinkMovileTheme {
+                val isLoggedIn by repository.getUidFlow().collectAsState(initial = null)
                 AppNavGraph(
                     authViewModel = authViewModel,
-                    isLoggedIn = isLoggedIn
+                    isLoggedIn = isLoggedIn != null
                 )
             }
         }

@@ -22,8 +22,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.Blue
+import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -56,21 +56,23 @@ fun LoginScreen(
     Scaffold { padding ->
         Column(
             modifier = Modifier
-                .fillMaxSize().background(Black)
+                .fillMaxSize().background(Gray)
                 .padding(padding)
         ) {
             Text(
-                text = "Login",
-                fontSize = 32.sp,
+                text = "Iniciar sesión",
+                fontSize = 36.sp,
                 fontWeight = FontWeight.Bold,
                 color = White,
-                modifier = Modifier.fillMaxWidth(),
-                textAlign = TextAlign.Center
+                modifier = Modifier
+                    .padding(vertical = 100.dp)
+                    .fillMaxWidth(),
+                textAlign = TextAlign.Center,
             )
 
-            Spacer(modifier = Modifier.height(50.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
-            TextFieldModificado(email, { email = it }, false, "Correo")
+            TextFieldModificado(email, { email = it }, false, "Correo",)
 
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -87,7 +89,9 @@ fun LoginScreen(
                 is AuthState.Error -> Text(
                     text = (authState as AuthState.Error).message,
                     color = MaterialTheme.colorScheme.error,
-                    modifier = Modifier.padding(top = 8.dp)
+                    modifier = Modifier
+                        .padding(top = 8.dp)
+                        .padding(horizontal = 100.dp)
                 )
                 else -> {}
             }
