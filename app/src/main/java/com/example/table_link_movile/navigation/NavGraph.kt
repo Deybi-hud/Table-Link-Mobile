@@ -57,6 +57,5 @@ fun AppNavGraph(authViewModel: AuthViewModel, isLoggedIn: Boolean) {
         composable("home") {
             HomeScreen(authViewModel = authViewModel, navHostControllerApp = navController)
         }
-        
     }
 }

@@ -44,13 +44,24 @@ fun HomeScreen(){
             .fillMaxSize()
             .padding(32.dp),
         contentAlignment = Alignment.Center
+
     ) {
+        Text(
+            text = "Bienvenido a Table Link",
+            style = MaterialTheme.typography.titleLarge,
+            color = MaterialTheme.colorScheme.primary,
+            modifier = Modifier
+                .align(Alignment.TopCenter)
+                .background(color = MaterialTheme.colorScheme.primaryContainer, shape = RoundedCornerShape(8.dp))
+                .padding(12.dp)
+        )
+
         Box(
             modifier = Modifier
                 .width(250.dp)
                 .height(140.dp)
                 .background(
-                    color = MaterialTheme.colorScheme.surfaceVariant,
+                    color = MaterialTheme.colorScheme.secondaryContainer,
                     shape = RoundedCornerShape(12.dp)
                 )
                 .shadow(
@@ -64,18 +75,22 @@ fun HomeScreen(){
             Column(
                 verticalArrangement = Arrangement.spacedBy(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
+
             ) {
                 Text(
                     text = "Subir Archivo",
                     style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = MaterialTheme.colorScheme.tertiary
                 )
                 Button(
                     onClick = { filePickerLauncher.launch("*/*") },
                     modifier = Modifier
                         .width(180.dp)
                 ) {
-                    Text("Seleccionar")
+                    Text(
+                        text = "Seleccionar",
+                        color = MaterialTheme.colorScheme.tertiaryContainer
+                    )
                 }
             }
         }

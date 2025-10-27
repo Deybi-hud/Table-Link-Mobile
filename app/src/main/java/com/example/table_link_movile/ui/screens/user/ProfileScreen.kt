@@ -78,7 +78,7 @@ fun ProfileScreen(authViewModel: AuthViewModel, navControllerApp: NavHostControl
                 .fillMaxWidth(),
                     shape = RoundedCornerShape(8.dp)
         ) {
-            Text("Historial", color = Gray)
+            Text("Historial de conversiones", color = Gray)
         }
         Spacer(Modifier.height(32.dp))
         Button(
