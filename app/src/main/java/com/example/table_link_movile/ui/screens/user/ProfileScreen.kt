@@ -7,9 +7,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -46,7 +50,16 @@ fun ProfileScreen(authViewModel: AuthViewModel, navControllerApp: NavHostControl
                 color = White
             )
 
-        Spacer(Modifier.height(100.dp))
+        Spacer(Modifier.height(24.dp))
+
+        Icon(
+            imageVector = Icons.Default.Person,
+            contentDescription = "Icono de perfil",
+            modifier = Modifier.size(96.dp),
+            tint = White
+        )
+
+        Spacer(Modifier.height(50.dp))
 
         Text(
             text = "Nombre: ${if (userName.isNullOrBlank()) "-" else userName}",
@@ -67,10 +80,7 @@ fun ProfileScreen(authViewModel: AuthViewModel, navControllerApp: NavHostControl
         Button(
             onClick = {
                 try {
-                    authViewModel.logout()
-                    navControllerApp.navigate("record") {
-                        popUpTo("home") { inclusive = true }
-                    }
+                    navControllerApp.navigate("record")
                 } catch (err: Exception) {}
             },
             colors = ButtonDefaults.buttonColors(containerColor = White),
