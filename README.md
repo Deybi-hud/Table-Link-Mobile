@@ -15,11 +15,3 @@
   <li>Exportación segura de datos</li>
   <li>Adaptado para microempresas</li>
 </ul>
-
----
-
-<h2 align="center">Tecnologías Usadas</h2>
-
-<ul>
-  <li>Kotlin</li>
-</ul>

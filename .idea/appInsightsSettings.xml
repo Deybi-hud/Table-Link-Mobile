@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.table_link_movile" />
+                  <option name="mobileSdkAppId" value="1:321660372323:android:49e203ea2ea4a15d30bf56" />
+                  <option name="projectId" value="firetable-link" />
+                  <option name="projectNumber" value="321660372323" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

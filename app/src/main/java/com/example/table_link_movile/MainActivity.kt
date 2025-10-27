@@ -1,46 +1,36 @@
 package com.example.table_link_movile
 
 import android.os.Bundle
+import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.activity.viewModels
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import com.example.table_link_movile.data.repository.AuthRepository
+import com.example.table_link_movile.navigation.AppNavGraph
 import com.example.table_link_movile.ui.theme.TableLinkMovileTheme
+import com.example.table_link_movile.viewmodel.AuthViewModel
+import com.example.table_link_movile.viewmodel.AuthViewModelFactory
 
-class MainActivity : androidx.activity.ComponentActivity() {
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val repository = AuthRepository(applicationContext)
+        val authViewModel: AuthViewModel by viewModels {
+            AuthViewModelFactory(repository)
+        }
+
         enableEdgeToEdge()
         setContent {
             TableLinkMovileTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                val isLoggedIn by repository.getUidFlow().collectAsState(initial = null)
+                AppNavGraph(
+                    authViewModel = authViewModel,
+                    isLoggedIn = isLoggedIn != null
+                )
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    TableLinkMovileTheme {
-        Greeting("Android")
     }
 }
