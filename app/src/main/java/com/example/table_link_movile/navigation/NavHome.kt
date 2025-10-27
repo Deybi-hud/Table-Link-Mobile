@@ -3,7 +3,6 @@ package com.example.table_link_movile.navigation
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -45,7 +44,6 @@ fun NavHome(authViewModel: AuthViewModel, navControllerApp: NavHostController) {
             NavigationBar(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(70.dp)
                     .padding(horizontal = 16.dp, vertical = 8.dp)
                     .clip(MaterialTheme.shapes.medium),
                 containerColor = MaterialTheme.colorScheme.surfaceContainer,
@@ -66,7 +64,9 @@ fun NavHome(authViewModel: AuthViewModel, navControllerApp: NavHostController) {
                             Icon(
                                 imageVector = Icons.Default.Home,
                                 contentDescription = "Inicio",
-                                modifier = Modifier.size(24.dp)
+                                modifier = Modifier
+                                    .size(24.dp)
+
                             )
                             if (selectedDestination == "home_user") {
                                 Box(
@@ -83,7 +83,7 @@ fun NavHome(authViewModel: AuthViewModel, navControllerApp: NavHostController) {
                     },
                     label = {
                         Text(
-                            "Inicio",
+                            "",
                             style = MaterialTheme.typography.labelSmall
                         )
                     },
@@ -126,7 +126,7 @@ fun NavHome(authViewModel: AuthViewModel, navControllerApp: NavHostController) {
                     },
                     label = {
                         Text(
-                            "Perfil",
+                            "",
                             style = MaterialTheme.typography.labelSmall
                         )
                     },
