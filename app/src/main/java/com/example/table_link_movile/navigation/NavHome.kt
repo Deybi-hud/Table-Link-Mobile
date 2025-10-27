@@ -44,7 +44,7 @@ fun NavHome(authViewModel: AuthViewModel, navControllerApp: NavHostController) {
             NavigationBar(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 16.dp, vertical = 8.dp)
+                    .size(90.dp)
                     .clip(MaterialTheme.shapes.medium),
                 containerColor = MaterialTheme.colorScheme.surfaceContainer,
                 contentColor = MaterialTheme.colorScheme.onSurface,
@@ -52,20 +52,22 @@ fun NavHome(authViewModel: AuthViewModel, navControllerApp: NavHostController) {
             ) {
                 NavigationBarItem(
                     selected = selectedDestination == "home_user",
-                    onClick = {
-                        navController.navigate(route = "home_user")
+                    modifier = Modifier
+                        .padding(top = 35.dp),
+                    onClick = { navController.navigate(route = "home_user")
                         selectedDestination = "home_user"
                     },
                     icon = {
                         Box(
-                            modifier = Modifier.size(48.dp),
-                            contentAlignment = Alignment.Center
+                            modifier = Modifier
+                                .size(60.dp),
+                            contentAlignment = Alignment.Center,
                         ) {
                             Icon(
                                 imageVector = Icons.Default.Home,
                                 contentDescription = "Inicio",
                                 modifier = Modifier
-                                    .size(24.dp)
+                                    .size(24.dp),
 
                             )
                             if (selectedDestination == "home_user") {
@@ -97,6 +99,8 @@ fun NavHome(authViewModel: AuthViewModel, navControllerApp: NavHostController) {
                 )
                 NavigationBarItem(
                     selected = selectedDestination == "profile",
+                    modifier = Modifier
+                        .padding(top = 35.dp),
                     onClick = {
                         navController.navigate("profile")
                         selectedDestination = "profile"
