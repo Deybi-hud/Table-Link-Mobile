@@ -8,6 +8,7 @@ import com.example.table_link_movile.ui.screens.HomeScreen
 import com.example.table_link_movile.ui.screens.LoginScreen
 import com.example.table_link_movile.ui.screens.RegisterScreen
 import com.example.table_link_movile.ui.screens.SplashScreen
+import com.example.table_link_movile.ui.screens.user.RecordScreen
 import com.example.table_link_movile.viewmodel.AuthViewModel
 
 @Composable
@@ -20,14 +21,15 @@ fun AppNavGraph(authViewModel: AuthViewModel, isLoggedIn: Boolean) {
     ) {
         composable("splash") {
             SplashScreen {
-                // Corrección: Navegar a login si no está autenticado
                 if (isLoggedIn) navController.navigate("home") {
                     popUpTo("splash") { inclusive = true }
-                } else navController.navigate("home") {
+                }
+                else navController.navigate("home") {
                     popUpTo("splash") { inclusive = true }
                 }
             }
         }
+
         composable("login") {
             LoginScreen(
                 onLogin = { email, pass -> authViewModel.login(email, pass) },
@@ -40,6 +42,7 @@ fun AppNavGraph(authViewModel: AuthViewModel, isLoggedIn: Boolean) {
                 authViewModel = authViewModel
             )
         }
+
         composable("register") {
             RegisterScreen(
                 onRegister = { email, pass, name ->
@@ -54,8 +57,13 @@ fun AppNavGraph(authViewModel: AuthViewModel, isLoggedIn: Boolean) {
                 authViewModel = authViewModel
             )
         }
+
         composable("home") {
             HomeScreen(authViewModel = authViewModel, navHostControllerApp = navController)
+        }
+
+        composable("record") {
+            RecordScreen(onBack = { navController.popBackStack() })
         }
     }
 }

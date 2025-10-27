@@ -20,8 +20,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import com.example.table_link_movile.ui.components.ButtonModificado
 import com.example.table_link_movile.ui.components.TextFieldModificado
@@ -48,7 +50,7 @@ fun LoginScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
+            .background(color = White)
     ) {
         Column(
             modifier = Modifier
@@ -58,10 +60,10 @@ fun LoginScreen(
         ) {
             Spacer(modifier = Modifier.height(80.dp))
 
-            // Logo/Title
             Text(
-                text = "Table Link",
-                style = MaterialTheme.typography.displaySmall,
+                text = "Table-Link",
+                style = MaterialTheme.typography.displaySmall.copy(
+                    textDecoration = TextDecoration.Underline),
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.primary
             )
@@ -76,7 +78,6 @@ fun LoginScreen(
 
             Spacer(modifier = Modifier.height(48.dp))
 
-            // Form
             TextFieldModificado(
                 value = email,
                 onValueChange = { email = it },
@@ -120,7 +121,6 @@ fun LoginScreen(
 
             Spacer(modifier = Modifier.weight(1f))
 
-            // Register link
             TextButton(onClick = onNavigateToRegister) {
                 Text(
                     text = "¿No tienes cuenta? Regístrate",

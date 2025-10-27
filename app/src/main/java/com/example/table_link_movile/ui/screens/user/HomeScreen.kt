@@ -25,9 +25,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color.Companion.Gray
+import androidx.compose.ui.graphics.Color.Companion.Black
+import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun HomeScreen() {
@@ -44,10 +47,22 @@ fun HomeScreen() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Gray)
+            .background(color = White)
             .padding(24.dp),
         contentAlignment = Alignment.Center
     ) {
+
+        Text(
+            text = "Bienvenido a Table-Link",
+            style = MaterialTheme.typography.titleLarge.copy(
+                textDecoration = TextDecoration.Underline),
+            color = Black,
+            fontSize = 30.sp,
+            modifier = Modifier
+                .padding(top = 150.dp)
+                .align(Alignment.TopCenter)
+        )
+
         Card(
             modifier = Modifier
                 .width(280.dp)

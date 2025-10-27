@@ -29,9 +29,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.Black
-import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.table_link_movile.ui.components.ButtonModificado
@@ -42,6 +42,7 @@ import com.example.table_link_movile.viewmodel.AuthViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegisterScreen(
+
     onRegister: (String, String, String) -> Unit,
     onBack: () -> Unit,
     onSuccess: () -> Unit,
@@ -76,18 +77,18 @@ fun RegisterScreen(
                             .size(40.dp)
                             .padding(bottom = 20.dp)
                     ) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Volver", tint = White)
+                        Icon(Icons.Default.ArrowBack, contentDescription = "Volver", tint = Black)
                     }
                 },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = Black
+                    containerColor = White
                 )
             )
         }
     ) { padding ->
         Column(
             modifier = Modifier
-                .fillMaxSize().background(color = Gray)
+                .fillMaxSize().background(color = White)
                 .padding(padding),
         ) {
             Column(
@@ -99,8 +100,9 @@ fun RegisterScreen(
                 Text(
                     text = "Formulario de registro",
                     fontSize = 30.sp,
-                    style = MaterialTheme.typography.titleLarge,
-                    color = White,
+                    style = MaterialTheme.typography.titleLarge.copy(
+                        textDecoration = TextDecoration.Underline),
+                    color = Black,
                     modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Center
                 )
@@ -113,19 +115,13 @@ fun RegisterScreen(
 
                 TextFieldModificado(email, { email = it }, false, "Correo")
 
-
                 Spacer(modifier = Modifier.height(8.dp))
-
 
                 TextFieldModificado(password, { password = it }, true, "Contraseña")
 
-
                 Spacer(modifier = Modifier.height(8.dp))
 
-
-
                 TextFieldModificado(confirmPassword, { confirmPassword = it }, true, "Confirmar contraseña")
-
 
                 Spacer(modifier = Modifier.height(16.dp))
 
@@ -133,7 +129,8 @@ fun RegisterScreen(
                     if (password == confirmPassword) {
                         onRegister(email.trim(), password.trim(), name.trim())
                     }
-                })
+                }
+            )
 
                 Spacer(modifier = Modifier.height(16.dp))
 

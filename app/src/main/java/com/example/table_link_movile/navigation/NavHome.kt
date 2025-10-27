@@ -36,6 +36,7 @@ import com.example.table_link_movile.viewmodel.AuthViewModel
 
 @Composable
 fun NavHome(authViewModel: AuthViewModel, navControllerApp: NavHostController) {
+
     val navController = rememberNavController()
     var selectedDestination by rememberSaveable { mutableStateOf("home_user") }
 
