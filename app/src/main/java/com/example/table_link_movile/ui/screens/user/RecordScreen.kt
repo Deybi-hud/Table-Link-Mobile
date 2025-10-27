@@ -1,5 +1,7 @@
 package com.example.table_link_movile.ui.screens.user
 
+
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues

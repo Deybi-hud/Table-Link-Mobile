@@ -1,4 +1,5 @@
 package com.example.table_link_movile.ui.screens
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -6,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.CircularProgressIndicator
@@ -29,14 +31,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.Black
 import androidx.compose.ui.graphics.Color.Companion.Gray
 import androidx.compose.ui.graphics.Color.Companion.White
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.table_link_movile.ui.components.ButtonModificado
 import com.example.table_link_movile.ui.components.TextFieldModificado
 import com.example.table_link_movile.viewmodel.AuthState
 import com.example.table_link_movile.viewmodel.AuthViewModel
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegisterScreen(
@@ -62,17 +64,18 @@ fun RegisterScreen(
     Scaffold(
         topBar = {
             TopAppBar(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 20.dp)
+                    .height(60.dp),
                 title = {
-                    Text(
-                        text = "Crear cuenta",
-                        fontWeight = FontWeight.Bold,
-                        color = White,
-                        modifier = Modifier.fillMaxWidth(),
-                        textAlign = TextAlign.Center
-                    )
                 },
                 navigationIcon = {
-                    IconButton(onClick = onBack) {
+                    IconButton(onClick = onBack,
+                        modifier = Modifier
+                            .size(40.dp)
+                            .padding(bottom = 20.dp)
+                    ) {
                         Icon(Icons.Default.ArrowBack, contentDescription = "Volver", tint = White)
                     }
                 },
@@ -93,6 +96,17 @@ fun RegisterScreen(
                     .padding(top = 100.dp)
                     .fillMaxWidth()
             ) {
+                Text(
+                    text = "Formulario de registro",
+                    fontSize = 30.sp,
+                    style = MaterialTheme.typography.titleLarge,
+                    color = White,
+                    modifier = Modifier.fillMaxWidth(),
+                    textAlign = TextAlign.Center
+                )
+
+                Spacer(modifier = Modifier.height(30.dp))
+
                 TextFieldModificado(name,{ name = it }, false, "Nombre")
 
                 Spacer(modifier = Modifier.height(8.dp))
