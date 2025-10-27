@@ -1,5 +1,7 @@
 package com.example.table_link_movile.ui.screens.user
 
+
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -36,11 +38,14 @@ data class FileConversionRecord(val id: String, val originalFileName: String, va
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RecordScreen(onBack: () -> Unit = {}) {
+
     val conversionHistory = listOf(
+
         FileConversionRecord("1", "consulta_diaria.sql", "Excel", "11:45 AM", "Exitoso"),
         FileConversionRecord("2", "reporte_mensual.sql", "Excel", "Ayer", "Exitoso"),
         FileConversionRecord("3", "backup_completo.sql", "Excel", "25/12/2023", "Fallido"),
         FileConversionRecord("4", "log_de_accesos.sql", "Excel", "24/12/2023", "Exitoso")
+
     )
 
     Scaffold(
@@ -53,9 +58,9 @@ fun RecordScreen(onBack: () -> Unit = {}) {
                     }
                 },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                    containerColor = Color.Black,
-                    titleContentColor = Color.White,
-                    navigationIconContentColor = Color.White
+                    containerColor = Color.White,
+                    titleContentColor = Color.Black,
+                    navigationIconContentColor = Color.Black
                 )
             )
         }

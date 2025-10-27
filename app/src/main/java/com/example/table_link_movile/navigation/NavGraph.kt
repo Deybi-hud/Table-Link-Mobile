@@ -8,6 +8,7 @@ import com.example.table_link_movile.ui.screens.HomeScreen
 import com.example.table_link_movile.ui.screens.LoginScreen
 import com.example.table_link_movile.ui.screens.RegisterScreen
 import com.example.table_link_movile.ui.screens.SplashScreen
+import com.example.table_link_movile.ui.screens.user.RecordScreen
 import com.example.table_link_movile.viewmodel.AuthViewModel
 
 @Composable
@@ -17,29 +18,32 @@ fun AppNavGraph(authViewModel: AuthViewModel, isLoggedIn: Boolean) {
     NavHost(
         navController = navController,
         startDestination = "splash"
-    )
-    {
+    ) {
         composable("splash") {
             SplashScreen {
-                if (isLoggedIn) navController.navigate("home") { popUpTo("splash") { inclusive = true } }
-                else navController.navigate("home") { popUpTo("splash") { inclusive = true } }
+                if (isLoggedIn) navController.navigate("home") {
+                    popUpTo("splash") { inclusive = true }
+                }
+                else navController.navigate("home") {
+                    popUpTo("splash") { inclusive = true }
+                }
             }
         }
+
         composable("login") {
             LoginScreen(
-                onLogin = { email, pass -> authViewModel.login(email, pass)},
+                onLogin = { email, pass -> authViewModel.login(email, pass) },
                 onNavigateToRegister = { navController.navigate("register") },
-                onSuccess ={
-                    navController.navigate("home"){
-                        popUpTo("login") {inclusive = true}
+                onSuccess = {
+                    navController.navigate("home") {
+                        popUpTo("login") { inclusive = true }
                     }
-
                 },
                 authViewModel = authViewModel
-
             )
         }
-        composable("register"){
+
+        composable("register") {
             RegisterScreen(
                 onRegister = { email, pass, name ->
                     authViewModel.register(email, pass, name)
@@ -56,6 +60,10 @@ fun AppNavGraph(authViewModel: AuthViewModel, isLoggedIn: Boolean) {
 
         composable("home") {
             HomeScreen(authViewModel = authViewModel, navHostControllerApp = navController)
+        }
+
+        composable("record") {
+            RecordScreen(onBack = { navController.popBackStack() })
         }
     }
 }

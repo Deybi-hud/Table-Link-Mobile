@@ -46,5 +46,4 @@ class SessionManager(private val context: Context){
     suspend fun clearSession(){
         context.dataStore.edit { prefs -> prefs.remove(USER_UID) }
     }
-
 }

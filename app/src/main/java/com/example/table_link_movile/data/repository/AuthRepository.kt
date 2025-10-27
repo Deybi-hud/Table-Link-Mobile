@@ -44,7 +44,6 @@ class AuthRepository(context: Context) {
         sessionManager.saveUserName(name)
     }
 
-
     suspend fun logout(){
         auth.signOut()
         sessionManager.clearSession()
@@ -53,6 +52,5 @@ class AuthRepository(context: Context) {
     fun getUidFlow() = sessionManager.userUidFlow
     fun getUserNameFlow() = sessionManager.userNameFlow
     fun getUserEmailFlow() = sessionManager.userEmailFlow
-
 
 }

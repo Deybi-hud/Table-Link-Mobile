@@ -23,5 +23,4 @@ fun SplashScreen(onTimeout: () -> Unit) {
     Box(modifier = Modifier.fillMaxSize().background(Gray), contentAlignment = Alignment.Center){
         CircularProgressIndicator(color = White)
     }
-
 }

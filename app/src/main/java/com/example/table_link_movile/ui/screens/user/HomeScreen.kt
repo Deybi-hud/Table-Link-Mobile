@@ -1,19 +1,21 @@
 package com.example.table_link_movile.ui.screens.user
 
+
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,17 +25,20 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color.Companion.Black
+import androidx.compose.ui.graphics.Color.Companion.White
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
-fun HomeScreen(){
-
-    var fileName by remember{ mutableStateOf("Ningun archivo seleccionado") }
-    val filePickerLauncher = rememberLauncherForActivityResult (
+fun HomeScreen() {
+    var fileName by remember { mutableStateOf("Ningún archivo seleccionado") }
+    val filePickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent(),
         onResult = { uri ->
-            if ( uri != null){
+            if (uri != null) {
                 fileName = "Archivo Seleccionado"
             }
         }
@@ -42,59 +47,58 @@ fun HomeScreen(){
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(32.dp),
+            .background(color = White)
+            .padding(24.dp),
         contentAlignment = Alignment.Center
-
     ) {
+
         Text(
-            text = "Bienvenido a Table Link",
-            style = MaterialTheme.typography.titleLarge,
-            color = MaterialTheme.colorScheme.primary,
+            text = "Bienvenido a Table-Link",
+            style = MaterialTheme.typography.titleLarge.copy(
+                textDecoration = TextDecoration.Underline),
+            color = Black,
+            fontSize = 30.sp,
             modifier = Modifier
+                .padding(top = 150.dp)
                 .align(Alignment.TopCenter)
-                .background(color = MaterialTheme.colorScheme.primaryContainer, shape = RoundedCornerShape(8.dp))
-                .padding(12.dp)
         )
 
-        Box(
+        Card(
             modifier = Modifier
-                .width(250.dp)
-                .height(140.dp)
-                .background(
-                    color = MaterialTheme.colorScheme.secondaryContainer,
-                    shape = RoundedCornerShape(12.dp)
-                )
-                .shadow(
-                    elevation = 4.dp,
-                    shape = RoundedCornerShape(12.dp)
-
-                )
-                .padding(20.dp),
-            contentAlignment = Alignment.Center
+                .width(280.dp)
+                .height(160.dp),
+            shape = RoundedCornerShape(16.dp),
+            elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceContainer
+            )
         ) {
             Column(
-                verticalArrangement = Arrangement.spacedBy(16.dp),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(20.dp),
+                verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
-
             ) {
                 Text(
                     text = "Subir Archivo",
                     style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.tertiary
+                    color = MaterialTheme.colorScheme.onSurface,
+                    fontWeight = FontWeight.SemiBold
                 )
+
+                Spacer(modifier = Modifier.height(16.dp))
+
                 Button(
                     onClick = { filePickerLauncher.launch("*/*") },
                     modifier = Modifier
                         .width(180.dp)
+                        .height(44.dp),
+                    shape = RoundedCornerShape(10.dp)
                 ) {
-                    Text(
-                        text = "Seleccionar",
-                        color = MaterialTheme.colorScheme.tertiaryContainer
-                    )
+                    Text("Seleccionar Archivo")
                 }
             }
         }
     }
 }
-
-
